@@ -2,7 +2,7 @@
     "name": "noderestserver",
     "version": "1.0.0",
     "description": "Api Node Express Server",
-    "main": "index.js",
+    "main": "server/server.js",
     "scripts": {
         "start": "node server/server",
         "nodemon": "nodemon server/server",
