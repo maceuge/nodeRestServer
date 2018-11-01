@@ -13,12 +13,10 @@ app.use(bodyParser.json())
 // Cargar Ruta de Usuarios
 app.use(require('./routes/usuario'));
 
-
-mongoose.connect('mongodb://localhost:27017/admin', (err, res) => {
+mongoose.connect(process.env.URLDB, (err, res) => {
     if (err) throw err;
     console.log(`Base de Datos ONLINE`);
 });
-
 
 app.listen(process.env.PORT, () => {
     console.log(`El servidor inicio en el puerto: ${process.env.PORT}`);
