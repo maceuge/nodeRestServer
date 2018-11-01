@@ -1,0 +1,29 @@
+{
+    "name": "noderestserver",
+    "version": "1.0.0",
+    "description": "Api Node Express Server",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon server/server",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/maceuge/nodeRestServer.git"
+    },
+    "author": "Eugenio Vorontsov",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/maceuge/nodeRestServer/issues"
+    },
+    "homepage": "https://github.com/maceuge/nodeRestServer#readme",
+    "dependencies": {
+        "bcrypt": "^3.0.2",
+        "body-parser": "^1.18.3",
+        "express": "^4.16.4",
+        "mongoose": "^5.3.7",
+        "mongoose-unique-validator": "^2.0.2",
+        "save": "^2.3.2",
+        "underscore": "^1.9.1"
+    }
+}
