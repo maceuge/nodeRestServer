@@ -8,6 +8,10 @@ process.env.PORT = process.env.PORT || 3000;
 // ===================================================
 process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 
+
+// ===================================================
+// Data Base URL
+// ===================================================
 let urlDb;
 
 if (process.env.NODE_ENV === 'dev') {
@@ -17,3 +21,13 @@ if (process.env.NODE_ENV === 'dev') {
 }
 
 process.env.URLDB = urlDb;
+
+// ===================================================
+// Seed de Autenticacion
+// ===================================================
+process.env.SEED = process.env.SEED || '@super-sign@jsonToken';
+
+// ===================================================
+// Expiracion del Token
+// ===================================================
+process.env.TOKEN_EXPIRE = 28800;

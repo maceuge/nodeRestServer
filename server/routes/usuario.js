@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const _under = require('underscore');
 
 const User = require('../models/usuario');
+const { verifyToken, verifyAdminRole } = require('../middlewares/auth');
 
 app.get('/', function(req, res) {
     res.json('Hello World')
@@ -15,14 +16,14 @@ app.get('/', function(req, res) {
 // ===================================================
 
 // Get USER
-app.get('/user', function(req, res) {
+app.get('/user', verifyToken, (req, res) => {
 
     User.find({}, (err, allUser) => {
         if (err) {
             return res.status(500).json({
                 ok: false,
                 message: `Se produjo un error en el servidor al intentar obtener todos los usuarios!`,
-                error: err
+                err
             });
         }
         User.count({}, (err, count) => {
@@ -35,8 +36,10 @@ app.get('/user', function(req, res) {
     });
 });
 
+
+
 // Create USER
-app.post('/user', function(req, res) {
+app.post('/user', [verifyToken, verifyAdminRole], (req, res) => {
     let body = req.body;
 
     let user = new User({
@@ -51,7 +54,7 @@ app.post('/user', function(req, res) {
             return res.status(400).json({
                 ok: false,
                 message: `Error al realizar la peticion del guardado en la BD!`,
-                error: err
+                err
             });
         }
 
@@ -63,7 +66,7 @@ app.post('/user', function(req, res) {
 });
 
 // Put USER
-app.put('/user/:id', function(req, res) {
+app.put('/user/:id', verifyToken, (req, res) => {
     let id = req.params.id;
     let body = _under.pick(req.body, ["name", "email", "img", "role", "state"]);
 
@@ -72,7 +75,7 @@ app.put('/user/:id', function(req, res) {
             return res.status(400).json({
                 ok: false,
                 message: `No se pudo actualizar al usuario con el id: ${id}`,
-                error: err
+                err
             });
         }
 
@@ -84,7 +87,7 @@ app.put('/user/:id', function(req, res) {
 });
 
 // Delete USER
-app.delete('/user/:id', function(req, res) {
+app.delete('/user/:id', [verifyToken, verifyAdminRole], (req, res) => {
     let id = req.params.id;
 
     User.findByIdAndRemove(id, (err, removedUser) => {
@@ -92,7 +95,7 @@ app.delete('/user/:id', function(req, res) {
             return res.status(400).json({
                 ok: false,
                 message: `No existe el usuario con id: ${id}`,
-                error: err
+                err
             });
         }
 
