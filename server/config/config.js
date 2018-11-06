@@ -31,3 +31,8 @@ process.env.SEED = process.env.SEED || '@super-sign@jsonToken';
 // Expiracion del Token
 // ===================================================
 process.env.TOKEN_EXPIRE = 28800;
+
+// ===================================================
+// Client ID Google
+// ===================================================
+process.env.CLIENT_ID = process.env.CLIENT_ID || '984943350378-c73fqfdugtvc8g73lirqnruf9h9o0b4t.apps.googleusercontent.com';

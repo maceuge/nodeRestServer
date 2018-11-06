@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
 
+const path = require('path');
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -13,6 +15,9 @@ app.use(bodyParser.json());
 
 // Carga de todas las Rutas
 app.use(require('./routes/index'));
+
+// Habilitar la ruta public
+app.use(express.static(path.resolve(__dirname, '../public')));
 
 mongoose.connect(process.env.URLDB, (err, res) => {
     if (err) throw err;
